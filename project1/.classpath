@@ -7,11 +7,11 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs/jinput.jar"/>
+	<classpathentry kind="lib" path="libs/slick.jar"/>
 	<classpathentry kind="lib" path="libs/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/stevenalvin/Desktop/OOSD/project 1/project1/libs"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="D:/Assignment UNIMELB/Object oriented software development/oosd-project1/project1/libs"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/slick.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
