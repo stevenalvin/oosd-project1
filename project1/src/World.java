@@ -20,6 +20,15 @@ public class World {
 		 map = new TiledMap("assets/main.tmx");
 		 player = new Player();
 	}
+	// returns the square of val
+	private float square(float val) {
+		return val * val;
+	}
+	// returns the distance between (x1, y1) and (x2, y2)
+	private float distance(float x1, float y1, float x2, float y2) {
+		return (float) Math.sqrt(square(x2 - x1) + square(y2 - y1));
+	}
+
 	public void update(Input input, int delta) {
 		// vector x and y is a vector from player to mouse
 		float vectorX = 0, vectorY = 0;
@@ -35,8 +44,11 @@ public class World {
 			dx += Player.SPEED * delta * Math.cos(radian);
 
 			dy += Player.SPEED * delta * Math.sin(radian);
+			
+			float distanceToTarget = distance(player.getX(), player.getY(),
+										mouseX, mouseY);
 		
-			player.move(dx, dy);
+			player.move(dx, dy, map, distanceToTarget);
 		}
 			
 		
