@@ -15,14 +15,24 @@ public class Player {
 		image = new Image("assets/scout.png");
 		
 	}
+	// getter for position x of sprite
 	public float getX() {
 		return x;
 	}
+	// getter for position y of sprite
 	public float getY() {
 		return y;
 	}
+	// getter for position x of sprite
+	public float setX(float x) {
+		return x;
+	}
+	// getter for position y of sprite
+	public float setY(float y) {
+		return y;
+	}
 	
-	public void move(float dx, float dy, TiledMap map, float distanceToTarget) {
+	public void move(float dx, float dy, Map map, float distanceToTarget) {
 		
 		x += dx;
 		y += dy;
@@ -31,22 +41,21 @@ public class Player {
 		if (x < 0) {
 			x = 0;
 		}
-		if (x > map.getWidth()* map.getTileWidth()) {
-			x = map.getWidth();
+		if (x > map.getMapWidth()) {
+			x = map.getMapWidth();
 		}
 		if (y < 0) {
 			y = 0;
 		}
-		if (y > map.getHeight()*map.getTileHeight()) {
-			y = map.getHeight();
+		if (y > map.getMapHeight()) {
+			y = map.getMapHeight();
 		}
-		
-		int tileId = map.getTileId((int)(x / map.getTileWidth()), (int)(y / map.getTileHeight()), 0);
-		String property = map.getTileProperty(tileId, "solid", "false");
-		if (Boolean.parseBoolean(property)) {
+		// not allowing sprite to move through solid tile
+		if (map.isSolid(x, y)) {
 			x -= dx;
 			y -= dy;
 		}
+		// make sprite stop 0.25px from target
 		if (distanceToTarget < STOP_DISTANCE_FROM_TARGET) {
 			x -= dx;
 			y -= dy;
