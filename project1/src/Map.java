@@ -1,5 +1,4 @@
 import org.newdawn.slick.tiled.TiledMap;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 

@@ -1,7 +1,5 @@
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.SlickException;
 
 
@@ -38,9 +36,10 @@ public class World {
 		double radian = 0;
 		if (input.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)) {
 			// read the mouse input coordinate
-			mouseX = input.getMouseX();
-			mouseY = input.getMouseY();
 			
+			mouseX = input.getMouseX() + cam.getCamX();
+			mouseY = input.getMouseY() + cam.getCamY();
+			System.out.println(mouseX);
 			// calculate vector from player to mouse
 			vectorX = mouseX - player.getX();
 			vectorY = mouseY - player.getY();
@@ -62,16 +61,12 @@ public class World {
 			// move camera
 			cam.moveCam(player, map);
 		}
-			
 		
 	}
 	
 	public void render(Graphics g) {
 		g.translate(-cam.getCamX(), -cam.getCamY());
 		map.render(0,0);
-		player.render();
-		g.translate(cam.getCamX(), cam.getCamY());
-		
-		
+		player.render();		
 	}
 }
