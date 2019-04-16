@@ -31,38 +31,36 @@ public class World {
 
 	public void update(Input input, int delta) {
 		// vector x and y is a vector from player to mouse
-		float vectorX = 0, vectorY = 0;
-		float dx = 0, dy = 0;
-		double radian = 0;
+		float vectorX, vectorY;
+		float dx, dy;
+		double radian;
 		if (input.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)) {
 			// read the mouse input coordinate
-			
 			mouseX = input.getMouseX() + cam.getCamX();
 			mouseY = input.getMouseY() + cam.getCamY();
-			System.out.println(mouseX);
-			// calculate vector from player to mouse
-			vectorX = mouseX - player.getX();
-			vectorY = mouseY - player.getY();
-			
-			// calculate the angle from player to mouse
-			radian = Math.atan2(vectorY, vectorX);
-			
-			// calculate the distance traveled for x and y for each frame
-			dx += Player.SPEED * delta * Math.cos(radian);
-			dy += Player.SPEED * delta * Math.sin(radian);
-			
-			// calculate the distance from player to mouse
-			float distanceToTarget = distance(player.getX(), player.getY(),
-										mouseX, mouseY);
-			
-			// move the player
-			player.move(dx, dy, map, distanceToTarget);
-			
-			// move camera
-			cam.moveCam(player, map);
 		}
+		// calculate vector from player to mouse
+		vectorX = mouseX - player.getX();
+		vectorY = mouseY - player.getY();
 		
+		// calculate the angle from player to mouse
+		radian = Math.atan2(vectorY, vectorX);
+		
+		// calculate the distance traveled for x and y for each frame
+		dx =(float) (Player.SPEED * delta * Math.cos(radian));
+		dy =(float) (Player.SPEED * delta * Math.sin(radian));
+		
+		// calculate the distance from player to mouse
+		float distanceToTarget = distance(player.getX(), player.getY(),
+										  mouseX, mouseY);
+		
+		// move the player
+		player.move(dx, dy, map, distanceToTarget);
+		
+		// move camera
+		cam.moveCam(player, map);
 	}
+		
 	
 	public void render(Graphics g) {
 		g.translate(-cam.getCamX(), -cam.getCamY());
