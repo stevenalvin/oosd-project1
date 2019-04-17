@@ -12,11 +12,15 @@ public class Camera {
 		camY = player.getY();
 	}
 	public void moveCam(Player player, Map map) {
+		// calculate the max coordinate for camera position
 		maxCamX = map.getMapWidth() - App.WINDOW_WIDTH;
 		maxCamY = map.getMapHeight() - App.WINDOW_HEIGHT;
 		
+		// set the camera position, to make the sprite stays in the middle
 		camX = player.getX() - App.WINDOW_WIDTH/2;
 		camY = player.getY() - App.WINDOW_HEIGHT/2;
+		
+		// prevent camera from moving outside the map
 		if (camX > maxCamX) {
 			camX = maxCamX;
 		}
@@ -30,6 +34,7 @@ public class Camera {
 			camY = minCamY;
 		}
 	}
+	// getters and setters for camera position
 	public float getCamX() {
 		return camX;
 	}

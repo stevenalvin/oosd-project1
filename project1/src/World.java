@@ -20,10 +20,12 @@ public class World {
 		 player = new Player();
 		 cam = new Camera(map, player);
 	}
+	
 	// returns the square of val
 	private float square(float val) {
 		return val * val;
 	}
+	
 	// returns the distance between (x1, y1) and (x2, y2)
 	private float distance(float x1, float y1, float x2, float y2) {
 		return (float) Math.sqrt(square(x2 - x1) + square(y2 - y1));
@@ -35,7 +37,8 @@ public class World {
 		float dx, dy;
 		double radian;
 		if (input.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)) {
-			// read the mouse input coordinate
+			// read the mouse input coordinate 
+			// and adjusted with the map coordinate after translation
 			mouseX = input.getMouseX() + cam.getCamX();
 			mouseY = input.getMouseY() + cam.getCamY();
 		}
@@ -63,7 +66,9 @@ public class World {
 		
 	
 	public void render(Graphics g) {
+		// translate the graphic to create a camera effect
 		g.translate(-cam.getCamX(), -cam.getCamY());
+		// draw all
 		map.render(0,0);
 		player.render();		
 	}

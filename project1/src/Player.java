@@ -35,6 +35,7 @@ public class Player {
 		
 		x += dx;
 		y += dy;
+		
 		// test this set of code later!!!
 		// limiting the sprite movement to only within the map
 		if (x < 0) {
@@ -49,6 +50,7 @@ public class Player {
 		if (y > map.getMapHeight()) {
 			y = map.getMapHeight();
 		}
+		
 		// not allowing sprite to move through solid tile
 		if (map.isSolid(x, y)) {
 			x -= dx;
